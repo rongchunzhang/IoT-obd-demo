@@ -47,8 +47,8 @@ def ReadECU():
         #v.set(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
         cmd = obd.commands.SPEED
         response = connection.query(cmd) # send the command, and parse the response
-        data = "{"
-        data += "\"Speed\": \"{!s}\"".format(response.value) # returns unit-bearing values thanks to Pint
+##        data = "{"
+        data = "\"Speed\": \"{!s}\"".format(response.value) # returns unit-bearing values thanks to Pint
         strInnerSpeed = "{!s}".format(response.value)
         print(strInnerSpeed) 
         #print(response.value.to("mph")) # user-friendly unit conversions
@@ -70,7 +70,7 @@ def ReadECU():
         response = connection.query(cmd)
         data += SEPARATOR
         data += "\"Distance since DTC cleared\": \"{!s}\"".format(response.value)
-        data += "}"
+##        data += "}"
         fo.truncate()
         fo.seek(0,0)
         fo.write(data)

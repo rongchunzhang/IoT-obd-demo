@@ -144,12 +144,12 @@ try:
         while True:
             loopCount += 1
             timestamp = datetime.datetime.now().strftime("%B %d , %Y")         
-            t = ecu_data.print_data() + " " + timestamp
+            t = ecu_data.print_data() #+ " " + timestamp
             print(' OBDData: {}  Loop # {:d}'.format(t,loopCount))
             print(' Time: {} \n'.format(timestamp))            
-##            msg = '"Device": "{:s}", "ODBData": "{}", "Loop": "{}"'.format(vehicle_sn, t,loopCount)
-            msg = '"Device": "{:s}", "{}", "Loop": "{}"'.format(vehicle_sn, t,loopCount) 
-            msg = '{'+msg+'}'
+            #msg = '"Device": "{:s}", "ODBData": "{}", "Loop": "{}"'.format(vehicle_sn, t,loopCount)
+            msg = '"Device": "{:s}","Loop": "{}"'.format(vehicle_sn,loopCount)
+            msg = '{'+msg+','+t+'}'
             myAWSIoTMQTTClient.publish(topic, msg, 1)
             # Begin to post to AWS
             data = msg
