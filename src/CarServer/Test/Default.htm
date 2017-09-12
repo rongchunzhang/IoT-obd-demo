@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>
+			Please wait...
+		</title>
+		<script type="text/javascript">
+		<!--
+function getLanguage() 
+{
+	var myReturn = 'en';
+	if (navigator.appName == 'Microsoft Internet Explorer')
+  { //for IE
+		myReturn = navigator.userLanguage;
+  } 
+  else
+  { //for all except IE
+		myReturn = navigator.language;
+  }
+	return(myReturn);
+}
+
+function LocalizedDefault()
+{
+	var myLocalization = getLanguage();
+	var myFile = "./Default_en.htm";
+	switch (myLocalization) 
+	{ 
+	case 'fr': 
+	case 'en': 
+		myFile = "./Default_" + myLocalization + ".htm"; 
+		break;
+	}
+	return(myFile);
+}
+
+function myRedirect() 
+{
+	window.location = LocalizedDefault();
+}
+
+		-->
+</script>
+	</head>
+	<body onload="javascript:myRedirect()">
+		Please wait...<br/><hr/><br/>
+		<A href="javascript:;" onClick="window.location = './Default_fr.htm';">Fran&ccedil;ais</A>
+		<br/>
+		<A href="javascript:;" onClick="window.location = './Default_en.htm';">English</A>
+	</body>
+</html>
