@@ -24,6 +24,7 @@ import datetime
 import ecu_data
 import requests
 import json
+import urllib3
 
 # Custom MQTT message callback
 def customCallback(client, userdata, message):
@@ -152,6 +153,7 @@ try:
             msg = '{'+msg+','+t+'}'
             myAWSIoTMQTTClient.publish(topic, msg, 1)
             # Begin to post to AWS
+            urllib3.disable_warnings()
             data = msg
             url = 'https://u7yocyk9jg.execute-api.us-west-2.amazonaws.com/test/vehicleobd'
 ##            data = {
