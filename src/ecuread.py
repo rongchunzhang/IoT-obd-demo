@@ -50,18 +50,20 @@ def ReadECU():
 ##        data = "{"
         data = "\"Speed\": \"{!s}\"".format(response.value) # returns unit-bearing values thanks to Pint
         strInnerSpeed = "{!s}".format(response.value)
-        print(strInnerSpeed) 
+        print(strInnerSpeed)
+        innerSpeed = response.value.magnitude
+        pwm = int(innerSpeed/2.55)
+        start_hex = struct.pack('5B', 0xff, 0x00, 0x01, 0x00, pwm)        
         #print(response.value.to("mph")) # user-friendly unit conversions
         cmd = obd.commands.RPM
         response = connection.query(cmd)
         data += SEPARATOR
-        data += "\"RPM\": \"{!s}\"".format(response.value)
-	
+        data += "\"RPM\": \"{!s}\"".format(response.value)	
         InnerRPM = response.value.magnitude
         if InnerRPM > 2000 and socketready:
-                client_socket.send(STARTCMD_HEX)
-                time.sleep(0.2)
-                client_socket.send(STOPCMD_HEX)
+            client_socket.send(start_hex)
+        else:
+            client_socket.send(STOPCMD_HEX)
         cmd = obd.commands.MAF
         response = connection.query(cmd)
         data += SEPARATOR

@@ -19,6 +19,7 @@ py -2 -m pip install urllib3[secure]
 
 -using
 1. sudo rfcomm connect rfcomm0 00:1D:A5:00:10:4A 1
-2. cd IOT -> python ecuread.py
-3. cd IOT -> ./start.sh
-4. cd IOT -> python speedUI.py
+2. cd IOT -> sudo ./carserver 9001 
+3. cd IOT -> python ecuread.py
+4. cd IOT -> ./start.sh
+5. export DISPLAY=:0 -> cd IOT -> python speedUI.py

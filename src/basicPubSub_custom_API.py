@@ -154,17 +154,12 @@ try:
             myAWSIoTMQTTClient.publish(topic, msg, 1)
             # Begin to post to AWS
             urllib3.disable_warnings()
-            data = msg
+            data = json.loads(msg)
+            print("printing message ... .")
+            print(data)
             url = 'https://u7yocyk9jg.execute-api.us-west-2.amazonaws.com/test/vehicleobd'
-##            data = {
-##                    "Device": "00000001",
-##                    "Speed": "20",
-##                    "RPM": "6000", 
-##                    "MAF": "300",
-##                    "Distance": "10000",
-##                    "Loop": 3
-##                    }
-
+            print("messsage....")
+            print(data)
             response = requests.post(url, data=json.dumps(data))
             print(response.json())
             print(response.status_code)
