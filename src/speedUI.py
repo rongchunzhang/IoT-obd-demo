@@ -25,14 +25,14 @@ def show_time():
 
 # Use tkinter lib for showing the clock
 root = Tk()
-##root.attributes("-fullscreen", True)
-root.attributes('-zoomed', True)
+root.attributes("-fullscreen", True)
+##root.attributes('-zoomed', True)
 root.configure(background='black')
 root.bind("<Control-x>", quit)
 ##root.after(100, show_time)
-fnt = tkFont.Font(family='Helvetica', size=200, weight='bold')
+fnt = tkFont.Font(family='Helvetica', size=160, weight='bold')
 txt = StringVar()
-lbl = Label(root, textvariable=txt, font=fnt, foreground="green", background="black")
+lbl = Label(root, textvariable=txt, font=fnt, foreground="white", background="black")
 lbl.place(relx=0.5, rely=0.5, anchor=CENTER)
 
 thread.start_new_thread(show_time,())
