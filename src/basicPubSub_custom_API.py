@@ -151,15 +151,13 @@ try:
             #msg = '"Device": "{:s}", "ODBData": "{}", "Loop": "{}"'.format(vehicle_sn, t,loopCount)
             msg = '"Device": "{:s}","Loop": "{}"'.format(vehicle_sn,loopCount)
             msg = '{'+msg+','+t+'}'
-            myAWSIoTMQTTClient.publish(topic, msg, 1)
+            comfirmUrl = 'https://u7yocyk9jg.execute-api.us-west-2.amazonaws.com/test/confirmation?vehicleId=1'
+            newMsg = msg +','+comfirmUrl
+            myAWSIoTMQTTClient.publish(topic, newMsg, 1)
             # Begin to post to AWS
             urllib3.disable_warnings()
             data = json.loads(msg)
-            print("printing message ... .")
-            print(data)
             url = 'https://u7yocyk9jg.execute-api.us-west-2.amazonaws.com/test/vehicleobd'
-            print("messsage....")
-            print(data)
             response = requests.post(url, data=json.dumps(data))
             print(response.json())
             print(response.status_code)
